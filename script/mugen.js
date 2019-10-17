@@ -5,7 +5,7 @@
 //var graphURL = "./data/marvel_degree_thresh_200.json";
 var graphURL = "./data/mu_128.json";
 //var graphURL = "./data/simple_communities.json";
-var imagePath  = "./data/images/";	
+var imagePath  = "./data/images/";
 
 // Graph object 
 var currentGraph = null;
@@ -39,79 +39,79 @@ var sig = null;
 /*****************************************************************************************/
 // ON LOAD
 /*****************************************************************************************/
-/** 
-  * Function to that initialise a sigma instance and load the graph 
-  *
-  */
+/**
+ * Function to that initialise a sigma instance and load the graph
+ *
+ */
 function on_load()
 {
 	// Add edge presence check method
 	sigma.classes.graph.addMethod('is_edge', function(n1,n2) {
-	    return this.allNeighborsIndex[n1][n2] != null;
+		return this.allNeighborsIndex[n1][n2] != null;
 	});
 
 	// Initialise a sigma instance
 	sig = new sigma({
 		graph: {
 			nodes: [], edges: []},
-			renderer: {
+		renderer: {
 			container: 'graph',
 			type: 'canvas'
 		},
 
 		// https://github.com/Linkurious/linkurious.js/wiki/Settings
-		settings : 
-		{
-			 // Labels:
-			font: 'helvetica',
-			defaultLabelColor: '#000000',
-			defaultLabelSize: 12,
-			labelThreshold: 10,
-			defaultEdgeLabelSize: 12,
-			edgeLabelThreshold: 15,
-			drawLabels: false,
-			drawEdgeLabels: false,
+		settings :
+			{
+				// Labels:
+				font: 'helvetica',
+				defaultLabelColor: '#000000',
+				defaultLabelSize: 12,
+				labelThreshold: 10,
+				defaultEdgeLabelSize: 12,
+				edgeLabelThreshold: 15,
+				drawLabels: false,
+				drawEdgeLabels: false,
 
-			// Edges:
-			edgeColor: 'default',
-			defaultEdgeColor: '#ccc',
+				// Edges:
+				edgeColor: 'default',
+				defaultEdgeColor: '#ccc',
 
-			// Nodes:
-			defaultNodeColor: defaultColor,
-			borderSize: 2,
-			outerBorderSize: 2,
-			nodeBorderColor: 'default',
-			defaultNodeBorderColor: '#fff',
-			defaultNodeOuterBorderColor: '#000',
+				// Nodes:
+				defaultNodeColor: defaultColor,
+				borderSize: 2,
+				outerBorderSize: 2,
+				nodeBorderColor: 'default',
+				defaultNodeBorderColor: '#fff',
+				defaultNodeOuterBorderColor: '#000',
 
-			// Hovered items:
-			singleHover: true,
-			hoverFontStyle: 'bold',
-			nodeHoverColor: 'default',
-			defaultNodeHoverColor: '#000',
-			edgeHoverColor: 'default',
-			defaultEdgeHoverColor: '#000',
-			labelHoverColor: 'default',
-			enableEdgeHovering: true,
-			defaultLabelHoverColor: '#000',
-			labelHoverBGColor: 'default',
-			defaultHoverLabelBGColor: '#fff',
-			labelHoverShadow: 'default',
-			labelHoverShadowColor: '#000',
-			edgeHoverExtremities: true, 		// (Dis)allow edge endpoints highlight
-			
-			// Rescale settings
-			minNodeSize: minNodeSize_,
-			maxNodeSize: maxNodeSize_,
-			minEdgeSize: 1,
-			maxEdgeSize: 2,
+				// Hovered items:
+				singleHover: true,
+				hoverFontStyle: 'bold',
+				nodeHoverColor: 'default',
+				defaultNodeHoverColor: '#000',
+				edgeHoverColor: 'default',
+				defaultEdgeHoverColor: '#000',
+				labelHoverColor: 'default',
+				enableEdgeHovering: true,
+				defaultLabelHoverColor: '#000',
+				labelHoverBGColor: 'default',
+				defaultHoverLabelBGColor: '#fff',
+				labelHoverShadow: 'default',
+				labelHoverShadowColor: '#000',
+				edgeHoverExtremities: true, 		// (Dis)allow edge endpoints highlight
 
-			// Captors setting
-			zoomMin: 0.05,
-			zoomMax: 5,
-			doubleClickZoomDuration: 0,
-			touchEnabled: false
-		}
+				// Rescale settings
+				minNodeSize: minNodeSize_,
+				maxNodeSize: maxNodeSize_,
+				minEdgeSize: 1,
+				maxEdgeSize: 2,
+
+				// Captors setting
+				zoomMin: 0.05,
+				zoomMax: 5,
+				doubleClickZoomDuration: 0,
+				touchEnabled: false
+			}
 	});
 
 	// Load the graph file
@@ -120,9 +120,9 @@ function on_load()
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
 			// Read JSON
-	    	currentGraph = JSON.parse(xmlhttp.responseText);
+			currentGraph = JSON.parse(xmlhttp.responseText);
 
-	    	// Read as sigma graph
+			// Read as sigma graph
 			sig.graph.read(currentGraph);
 
 			// Notification
@@ -150,10 +150,10 @@ function on_load()
 /*****************************************************************************************/
 // FUNCTIONS
 /*****************************************************************************************/
-/** 
-  * Function to initialize the event listeners
-  *
-  */
+/**
+ * Function to initialize the event listeners
+ *
+ */
 function initListener()
 {
 	// When a node is clicked
@@ -163,7 +163,7 @@ function initListener()
 		current_Node = e.data.node;
 
 	});
-						
+
 	// When the background is left clicked, not for dragging
 	sig.bind('clickStage', function(e) {
 
@@ -171,15 +171,15 @@ function initListener()
 
 			// Deselecting the node
 			deselectNode();
-			
+
 			// Resetting the camera
 			sigma.misc.animation.camera(
-				sig.camera, 
+				sig.camera,
 				{
-					x: 0, 
+					x: 0,
 					y: 0,
 					ratio: 1
-				}, 
+				},
 				{duration: 300}
 			);
 		}
@@ -187,19 +187,19 @@ function initListener()
 
 	// When a node is hovered
 	sig.bind('hovers', function(e) {
-	
+
 		// Handling non leaf node hover
 		if (e.data.current.nodes.length > 0) {
-		
+
 			// Get hovered node
 			hoveredNode = e.data.current.nodes[0];
-			
+
 			// Display node medoid as thumbnail
 			if (hoveredNode.representative)
 			{
 				img = ( hoveredNode.image.url )? hoveredNode.image.url : hoveredNode.image;
-				document.getElementById("currentNode").innerHTML = "<img id=\"miniCurrentImage\" src=\"" + img + "\"/>";	
-			}								
+				document.getElementById("currentNode").innerHTML = "<img id=\"miniCurrentImage\" src=\"" + img + "\"/>";
+			}
 		}
 		else
 		{
@@ -207,25 +207,25 @@ function initListener()
 			document.getElementById("currentNode").innerHTML = "";
 		}
 	});
-	
+
 };
 
 
 
-/** 
-  * Function that display a graph that has been load by sigma 
-  *
-  */
+/**
+ * Function that display a graph that has been load by sigma
+ *
+ */
 function display()
 {
 	// Reset the display
 	sigma.misc.animation.camera(
-		sig.camera, 
+		sig.camera,
 		{
-			x: 0, 
+			x: 0,
 			y: 0,
 			ratio: 1
-		}, 
+		},
 		{duration: 1}
 	);
 
@@ -256,10 +256,10 @@ function display()
 		n.originalLabel = (n.label)? n.label : "";
 
 	});
-			
+
 	// Preprocess each edge
 	sig.graph.edges().forEach(function(e) {
-	
+
 		// Save original attributes
 		e.originalColor = (e.color)? e.color : sig.settings('defaultEdgeColor');
 		e.originalSize = (e.size)? e.size : sig.settings('minNodeSize');
@@ -280,16 +280,16 @@ function display()
 
 
 
-/** 
-  * Function to change the colors and shapes of the nodes
-  *
-  */
+/**
+ * Function to change the colors and shapes of the nodes
+ *
+ */
 function changeNodeStyles()
 {
 	if (!blackNodes)
 	{
 		// Change the style of the nodes
-		
+
 		//TODO
 		sig.graph.nodes().forEach(function(n) {
 
@@ -301,9 +301,9 @@ function changeNodeStyles()
 	else
 	{
 		// Reinitialise node style
-		sig.graph.nodes().forEach(function(n) { 
+		sig.graph.nodes().forEach(function(n) {
 
-			n.color = n.originalColor; 
+			n.color = n.originalColor;
 			n.type = "square";
 		});
 
@@ -311,17 +311,17 @@ function changeNodeStyles()
 
 	// Update boolean 
 	blackNodes = !blackNodes;
-	
+
 	// Refresh the display
 	sig.refresh();
 }
 
 
 
-/** 
-  * Function to show or hide the edges of the graph
-  *
-  */
+/**
+ * Function to show or hide the edges of the graph
+ *
+ */
 function showHideEdges()
 {
 	// Show the edges
@@ -329,7 +329,7 @@ function showHideEdges()
 	{
 		document.getElementById("showHideEdgesImage").src = "images/hide_edges.png";
 		displayEdge = true;
-		
+
 		sig.graph.edges().forEach(function(e) {
 			e.hidden = false;
 		});
@@ -339,23 +339,23 @@ function showHideEdges()
 	{
 		document.getElementById("showHideEdgesImage").src = "images/show_edges.png";
 		displayEdge = false;
-		
+
 		//TODO
 		sig.graph.edges().forEach(function(e) {
 			e.hidden = true;
 		});
 	}
-	
+
 	// Refresh the display
 	sig.refresh();
 }
 
 
 
-/** 
-  * Function to display images in the node or hide them
-  *
-  */
+/**
+ * Function to display images in the node or hide them
+ *
+ */
 function showHideImages()
 {
 	// Show the images
@@ -364,7 +364,7 @@ function showHideImages()
 		// Change the button
 		document.getElementById("showHideImagesImage").src = "images/hide_image.png";
 		displayImage = true;
-	
+
 		// Set the image as object to display them in the nodes
 		sig.graph.nodes().forEach(function(n) {
 			if (n.representative)
@@ -386,13 +386,13 @@ function showHideImages()
 		// Change the button
 		document.getElementById("showHideImagesImage").src = "images/show_image.png";
 		displayImage = false;
-		
+
 		// Set the images only as path
 		sig.graph.nodes().forEach(function(n) {
-		
+
 			if (n.representative)
 				n.image = imagePath + n.representative;
-				
+
 			n.color = sig.settings('defaultNodeColor');;
 		});
 
@@ -404,29 +404,44 @@ function showHideImages()
 
 
 /**
-  * Function to highlight male/female classes
-  *
-  */
+ * Function to highlight male/female classes
+ *
+ */
 function maleFemaleHighlight()
 {
 
 //TODO
 
+	console.log("maleFemaleHighlight")
+	sig.graph.nodes().forEach(function(n) {
+		console.log(n)
+		if (n.sex == 'M'){
+			n.color = '#02dbdc';
+		} else if (n.sex == 'F'){
+			n.color = '#ff00ee';
+		}else{
+			n.color = '#ebe70d';
+		}
+
+		// n.color = n.originalColor;
+		// n.type = "square";
+	});
+
 }
 
 
 
-/** 
-  * Function to run the Fruchterman-Reingold layout algorithm
-  *
-  */
+/**
+ * Function to run the Fruchterman-Reingold layout algorithm
+ *
+ */
 function frLayout()
 {
 	// Configure the Fruchterman-Reingold algorithm:
 	var frListener = sigma.layouts.fruchtermanReingold.configure(sig, {
-	  iterations: 1000,
-	  easing: 'quadraticInOut',
-	  duration: 10000 
+		iterations: 1000,
+		easing: 'quadraticInOut',
+		duration: 10000
 	});
 
 	// Start the Fruchterman-Reingold algorithm:
@@ -436,33 +451,33 @@ function frLayout()
 
 
 
-/** 
-  * Function to run the Force Link layout algorithm
-  *
-  */
+/**
+ * Function to run the Force Link layout algorithm
+ *
+ */
 function flLayout()
 {
 	// Configure the ForceLink algorithm:
 	var fa = sigma.layouts.configForceLink(sig, {
-	  worker: true,
-	  autoStop: true,
-	  background: true,
-	  scaleRatio: 10,
-	  gravity: 3,
-	  easing: 'quadraticInOut'
+		worker: true,
+		autoStop: true,
+		background: true,
+		scaleRatio: 10,
+		gravity: 3,
+		easing: 'quadraticInOut'
 	});
 
-  // Start the ForceLink algorithm:
-  sigma.layouts.startForceLink();
+	// Start the ForceLink algorithm:
+	sigma.layouts.startForceLink();
 }
 
 
 
 
-/** 
-  * Function that open the help page 
-  * 
-  */
+/**
+ * Function that open the help page
+ *
+ */
 function help()
 {
 	window.open('help.html','_blank');
@@ -470,31 +485,31 @@ function help()
 
 
 
-/** 
-  * Function to change the node size 
-  * 
-  */
+/**
+ * Function to change the node size
+ *
+ */
 function changeNodeSize()
 {
 	// Getting the new value
 	var value = document.getElementById("nodeSizeSlider").value;
-	
+
 	// Update the sigma instance maxNodeSize
 	sig.settings('maxNodeSize', maxNodeSize_*value);
 
 	// Refresh the display
 	sig.refresh();
-	
+
 	// Update the UI
 	document.getElementById("nodeSize").innerHTML = value;
 }
 
 
 
-/** 
-  * Function to select a node
-  * 
-  */
+/**
+ * Function to select a node
+ *
+ */
 function selectNode(nodeId)
 {
 	var newSelectedNode;
@@ -506,19 +521,19 @@ function selectNode(nodeId)
 		{
 			newSelectedNode = n;
 		}
-	});	
+	});
 
 	// Get image
 	newImage = (newSelectedNode.image.url)? newSelectedNode.image.url : newSelectedNode.image
 
 	// Moving the camera to zoom on the node
 	sigma.misc.animation.camera(
-		sig.camera, 
+		sig.camera,
 		{
-			x: newSelectedNode[sig.camera.readPrefix + 'x'], 
+			x: newSelectedNode[sig.camera.readPrefix + 'x'],
 			y: newSelectedNode[sig.camera.readPrefix + 'y'],
 			ratio: zoomRatio
-		}, 
+		},
 		{duration: animDuration}
 	);
 
@@ -527,7 +542,7 @@ function selectNode(nodeId)
 	document.getElementById("selectedImage").innerHTML = "<img id=\"miniSelectedImage\" src=\"" + newImage + "\" onclick=\"zoomImage(&quot;" + newImage + "&quot;)\"/><br />";
 	document.getElementById("selectedImage").innerHTML += "<div id=\"zoomMessage\">Click on the image to show it entirely</div><br/>";
 	document.getElementById("nodesInfo").hidden = false;
-	
+
 	// Display the neighbours of the node
 	document.getElementById("neighboursList").innerHTML = "";
 	neighbours = getNeighbours(sig, nodeId);
@@ -539,17 +554,17 @@ function selectNode(nodeId)
 		newNeighbour += "<img class=\"neighbourImage\" src=\"" + newNeighbourImage + "\" onclick=\"selectNode(&quot;" + neighbours[i].id + "&quot;)\"/>";
 		newNeighbour += "<img class=\"neighbourImageZoom\" src=\"" + newNeighbourImage + "\" title=\"" + neighbours[i].label + "\" onclick=\"selectNode(&quot;" + neighbours[i].id + "&quot;)\"/>";
 		newNeighbour += "</a></li>";
-		document.getElementById("neighboursList").innerHTML += newNeighbour;	
+		document.getElementById("neighboursList").innerHTML += newNeighbour;
 	}
 	document.getElementById("neighboursList").hidden = false;
 }
 
 
 
-/** 
-  * Function to deselect the current node
-  * 
-  */
+/**
+ * Function to deselect the current node
+ *
+ */
 function deselectNode()
 {
 	// Delete the node information list
@@ -557,7 +572,7 @@ function deselectNode()
 	document.getElementById("selectedImage").innerHTML = "";
 	document.getElementById("neighboursList").innerHTML = "";
 	document.getElementById("nodesInfo").hidden = true;
-	
+
 	// Reset neighbours list
 	neighbours = [];
 
@@ -571,37 +586,37 @@ function deselectNode()
 
 
 
-/** 
-  * Function to get the neighbours of a node
-  * 
-  */
+/**
+ * Function to get the neighbours of a node
+ *
+ */
 function getNeighbours(sig, nodeId)
 {
 	var	neighboursId = [];
 	var	weights = [];
 	var neighbours = [];
-	
+
 	//TODO
-	
+
 	return neighbours;
 }
 
 
 
-/** 
-  * Function to view the current selected image full-sized
-  * 
-  */
+/**
+ * Function to view the current selected image full-sized
+ *
+ */
 function zoomImage(image)
 {
 	// Get the name of the image
 	var parts = image.split("/");
 	var name = parts[parts.length - 1];
-	
+
 	// Set the image as the content of the window
 	var content = "<html><head><title>" + name + "</title></head>"
 	content += "<body><img src=\"" + image + "\"></body></html>";
-	
+
 	// Display the window
 	var popupImage = window.open("", "_blank", "toolbar=0, location=0, directories=0, menuBar=0, scrollbars=1, resizable=1");
 	popupImage.document.open();
@@ -611,23 +626,23 @@ function zoomImage(image)
 
 
 
-/** 
-  * Function to change the current displayed tab
-  * 
-  */
+/**
+ * Function to change the current displayed tab
+ *
+ */
 function changeTab(newTab)
 {
-	if(newTab == "shortestPathTab") 
+	if(newTab == "shortestPathTab")
 	{
 		shortestPath()
 	}
 	// Change the style of the tabs
 	document.getElementById(currentTab).className = "tab nonSelectedTab";
 	document.getElementById(newTab).className = "tab selectedTab";
-	
+
 	// Erase the content of the current tab
 	document.getElementById(currentTab + "Content").className = "tabContent nonSelectedContent";
-	
+
 	// Display the content of the new tab
 	document.getElementById(newTab + "Content").className = "tabContent selectedContent";
 	currentTab = newTab;
@@ -635,11 +650,11 @@ function changeTab(newTab)
 
 
 
-/** 
-  * Function to change the current displayed tab
-  * https://plot.ly/javascript/box-plots/
-  * 
-  */
+/**
+ * Function to change the current displayed tab
+ * https://plot.ly/javascript/box-plots/
+ *
+ */
 function edgeWeightsBoxplot()
 {
 	var weights = [];
@@ -654,11 +669,11 @@ function edgeWeightsBoxplot()
 
 	// Build plotly structure for boxplot
 	var trace = {
-	  y: weights,
-	  boxpoints: 'all',
-      jitter: 0.3,
-   	  pointpos: -1.8,
-	  type: 'box'
+		y: weights,
+		boxpoints: 'all',
+		jitter: 0.3,
+		pointpos: -1.8,
+		type: 'box'
 	};
 
 	var data = [trace];
@@ -672,12 +687,12 @@ function edgeWeightsBoxplot()
 
 
 /*****************************************************************************************
-// CLUSTERING
-/*****************************************************************************************
-/** 
-  * Function to prune the graph based on weights
-  * 
-  */
+ // CLUSTERING
+ /*****************************************************************************************
+ /**
+ * Function to prune the graph based on weights
+ *
+ */
 function pruneGraph()
 {
 	// Notification
@@ -692,20 +707,20 @@ function pruneGraph()
 }
 
 
-/** 
-  * Function to get the 10 nodes with the highest degree
-  * 
-  */
+/**
+ * Function to get the 10 nodes with the highest degree
+ *
+ */
 function highestDegreeNodes()
 {
-    //TODO
+	//TODO
 }
 
 
-/** 
-  * HITS nodes assignation
-  * 
-  */
+/**
+ * HITS nodes assignation
+ *
+ */
 function hitsAlgorithm()
 {
 	// The parameter true indicates that the graph is undirected
@@ -714,33 +729,33 @@ function hitsAlgorithm()
 	// Convert to sortable objects
 	var sortable = [];
 	for (var stat in stats)
-    	sortable.push([stat, stats[stat]])
+		sortable.push([stat, stats[stat]])
 
 	// Sort by autorithy
 	sortable.sort(function(obj1, obj2){
-    	return obj1[1].authority < obj2[1].authority;
+		return obj1[1].authority < obj2[1].authority;
 	});
 
 	// Reset node colours
 	sig.graph.nodes().forEach(function(node) {
-	  	node.color = "black";
+		node.color = "black";
 	});
 
 	// Colour 10 first "authority" nodes
 	for (var i = 0; i < 5; i++) {
 		sig.graph.nodes(sortable[i][0]).color = "blue";
 		console.log("HITS " + i + " : " + sig.graph.nodes(sortable[i][0]).label);
-	} 
+	}
 
 	// Refresh sigma renderers:
 	sig.refresh({skipIndexation: true});
 }
 
 
-/** 
-  * Louvain clustering
-  * 
-  */
+/**
+ * Louvain clustering
+ *
+ */
 function louvainClustering()
 {
 	//Partie 1
@@ -749,17 +764,17 @@ function louvainClustering()
 
 	// Declare array of colours
 	var colours = ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy',
-	              'olive', 'orange', 'purple', 'red', 'silver', 'teal', 'white', 'yellow'];
+		'olive', 'orange', 'purple', 'red', 'silver', 'teal', 'white', 'yellow'];
 
 	// Colour nodes based on their community
 	sig.graph.nodes().forEach(function(node) {
 		//console.log(node.id + " - class = " + node._louvain);
-	  	node.color = colours[node._louvain];
+		node.color = colours[node._louvain];
 	});
 
 	// Refresh sigma renderers:
 	sig.refresh({skipIndexation: true});
-	
+
 	//Partie 2
 	// Get partitions at the lowest level:
 	var partitions = louvainInstance.getPartitions({level: 1});
@@ -779,10 +794,10 @@ function louvainClustering()
 }
 
 
-/** 
-  * Compute internal and external densities 
-  * 
-  */
+/**
+ * Compute internal and external densities
+ *
+ */
 function computeDensities(communityMap, nbPartitions)
 {
 	// Initialise internal density
@@ -830,10 +845,10 @@ function computeDensities(communityMap, nbPartitions)
 
 
 
-/** 
-  * Newman-Girvan clustering
-  * 
-  */
+/**
+ * Newman-Girvan clustering
+ *
+ */
 function newmanGirvanClustering()
 {
 	var MAX_ITERATIONS = 1;
@@ -861,50 +876,50 @@ function newmanGirvanClustering()
 
 		// Get more important edge
 		//TODO
-		
+
 		// Colour it
 		//TODO
-					
-		importantEdge.color = "red"; 
+
+		importantEdge.color = "red";
 		importantEdge.size = 10
- 		sig.refresh({skipIndexation: true});
+		sig.refresh({skipIndexation: true});
 		msg = "Most important edge is " + importantEdge.id + " that links nodes (" + max_key + ") with a total of " + max_value + " shortest paths."
 		console.log(msg);
 		alert(msg)
-	
+
 		//to be contibued...
 		//TODO
-				
+
 		// Increment counter
 		nb_iterations++;
-		
+
 	}
 }
 
 
 
-/** 
-  * ShortestPath
-  * 
-  */
+/**
+ * ShortestPath
+ *
+ */
 function shortestPath()
 {
 	console.log("Path");
-	 
+
 	//TODO
-		
+
 }
 
 
 
 
 /*****************************************************************************************
-// SPLASHSCREEN
-/*****************************************************************************************
-/** 
-  * Function to fade out the splash screen 
-  * 
-  */
+ // SPLASHSCREEN
+ /*****************************************************************************************
+ /**
+ * Function to fade out the splash screen
+ *
+ */
 function splashscreenOnClick()
 {
 	// Assign splash screen click behaviour
@@ -914,21 +929,21 @@ function splashscreenOnClick()
 
 
 
-/** 
-  * Function to fade out an element
-  * http://www.chrisbuttery.com/articles/fade-in-fade-out-with-javascript/
-  * 
-  */
+/**
+ * Function to fade out an element
+ * http://www.chrisbuttery.com/articles/fade-in-fade-out-with-javascript/
+ *
+ */
 function fadeOut(el)
 {
-  el.style.opacity = 1;
+	el.style.opacity = 1;
 
-  (function fade() {
-    if ((el.style.opacity -= .02) < 0) {
-      el.style.display = "none";
-    } else {
-      requestAnimationFrame(fade);
-    }
-  })();
+	(function fade() {
+		if ((el.style.opacity -= .02) < 0) {
+			el.style.display = "none";
+		} else {
+			requestAnimationFrame(fade);
+		}
+	})();
 }
 

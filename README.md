@@ -42,3 +42,14 @@ noms, prénoms, numéros étudiant.
 
 Question 4. Dans index.html, associer comme évènement sur le bouton "fl (img au pdf)" la méthode JavaScript
 `flLayout()' qui est déjà implémentée.
+
+Question 5. Compléter la fonction JavaScript `changeNodeStyles()' qui change la forme et la couleur
+de tous les noeuds (type= "circle" et color="#000"). Cette fonction est associée au bouton .
+
+
+Question 6. Compléter la fonction JavaScript `showHideEdges()' qui permet d'afficher ou non les
+arêtes. Cette fonction est associée au bouton . 
+Quel peut-être l'intérêt d'une telle fonctionnalité ?
+
+R: Allow a reorganazetion of nodes with a low complex
+Removing an edge takes O(1) time
