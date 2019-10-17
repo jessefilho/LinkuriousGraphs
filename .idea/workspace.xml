@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc800abb-bd22-4627-9313-861a4aa93f18" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/mugen.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/mugen.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script/mugen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="728" column="39" lean-forward="true" selection-start-line="728" selection-start-column="39" selection-end-line="728" selection-end-column="39" />
+            <state relative-caret-position="332">
+              <caret line="731" column="12" selection-start-line="731" selection-start-column="12" selection-end-line="731" selection-end-column="12" />
               <folding>
                 <element signature="e#1305#2716#0" />
                 <element signature="e#1485#2713#0" />
@@ -44,8 +45,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="520">
-                <caret line="73" column="3" selection-start-line="73" selection-start-column="3" selection-end-line="73" selection-end-column="3" />
+              <first_editor relative-caret-position="-290">
+                <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               </first_editor>
               <second_editor />
             </state>
@@ -62,7 +63,6 @@
       <find>showHideEdges</find>
       <find>change</find>
       <find>male</find>
-      <find>nodeTabContent</find>
       <find>neighbo</find>
       <find>neighbours</find>
       <find>neighborhood</find>
@@ -70,7 +70,11 @@
       <find>prune</find>
       <find>getNei</find>
       <find>MIN_EDGE_WEIGHT</find>
+      <find>nodeTabContent</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -144,12 +148,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571310931281</updated>
-      <workItem from="1571310935999" duration="10558000" />
+      <workItem from="1571310935999" duration="12440000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10558000" />
+    <option name="totallyTimeSpent" value="12440000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-367" y="-1057" width="1232" height="1057" extended-state="0" />
@@ -218,17 +222,31 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="520">
-            <caret line="73" column="3" selection-start-line="73" selection-start-column="3" selection-end-line="73" selection-end-column="3" />
+          <first_editor relative-caret-position="-290">
+            <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/script/linkurious/plugins.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/linkurious/plugins/sigma.plugins.activeState.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2600" selection-start-column="2600" selection-end-column="2600" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/script/mugen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="728" column="39" lean-forward="true" selection-start-line="728" selection-start-column="39" selection-end-line="728" selection-end-column="39" />
+        <state relative-caret-position="332">
+          <caret line="731" column="12" selection-start-line="731" selection-start-column="12" selection-end-line="731" selection-end-column="12" />
           <folding>
             <element signature="e#1305#2716#0" />
             <element signature="e#1485#2713#0" />

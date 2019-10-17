@@ -77,3 +77,10 @@ Question 10. Pour filtrer le graphe, écrire la fonction JavaScript `pruneGraph(
 dont le poids est inferieur a un paramètre global `MIN_EDGE_WEIGHT. Faire appel à cette fonction
 dans la méthode `on load()' avant l'affichage du graphe.
 Aide : (Suppression d’arc = sig.graph.dropEdge(edge.id);)
+
+Question 11. Avec MIN EDGE WEIGHT = 50, lancer l'algorithme de dessin de graphe FruchtermanReingold. Que remarquez-vous ? Compléter la fonction `pruneGraph()' pour éventuellement supprimer
+les éléments en trop".
+
+```
+Reste trop de nodes, et cela empêche d'avoir une visualisation propre.
+```

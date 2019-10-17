@@ -721,12 +721,19 @@ function pruneGraph()
 	console.log("Initial graph number of edges = " + sig.graph.edges().length );
 
 	// TODO
-	//sig.graph.dropEdge(edge.id)
-
 	sig.graph.edges().forEach(function(edge) {
-		//console.log("edge",edge.weight,edge.weight < this.MIN_EDGE_WEIGHT)
 		if(edge.weight < this.MIN_EDGE_WEIGHT){
 			sig.graph.dropEdge(edge.id)
+			//check neighborhood as a source
+			if (sig.graph.neighborhood(edge.source).edges.length == 0){
+				nodeID_withoutEdges = sig.graph.neighborhood(edge.source).nodes[0].id
+				sig.graph.dropNode(nodeID_withoutEdges)
+			}
+			//neighborhood as a target
+			if (sig.graph.neighborhood(edge.target).edges.length == 0){
+				nodeID_withoutEdges = sig.graph.neighborhood(edge.target).nodes[0].id
+				sig.graph.dropNode(nodeID_withoutEdges)
+			}
 		}
 	});
 
