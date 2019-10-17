@@ -114,4 +114,16 @@ HITS 7 : HUMAN TORCH/JOHNNY S  mugen.js:780:3
 HITS 8 : WONDER MAN/SIMON WIL  mugen.js:780:3
 HITS 9 : MR. FANTASTIC/REED R  mugen.js:780:3
 HITS 10 : IRON MAN/TONY STARK
-``'
+```
+
+Question 14. Regarder et expliquer (partie 1 et partie 2) la fonction JavaScript `louvainClustering()'
+qui fait appel à l'algorithme de Louvain, déjà implémenté.
+Aide : https://github.com/Linkurious/linkurious.js/tree/linkurious-version/plugins/sigma.statistics.louvain
+
+```
+l'algorithme de Louvain reorganise les graphs en basant sur le clustering
+hierarchique, en regroupant les noudes voisins qui sont plus proche et qui
+respecte les parametres de Internal density et External density. Oú Internal density
+est la "distance" inters entre les nouds voisins. Et External density est
+la "distance" entre les groupes ou communautés.
+```

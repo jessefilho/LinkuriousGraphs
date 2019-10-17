@@ -15,6 +15,7 @@ var displayEdge = true;
 var displayImage = false;
 var blackNodes = false;
 
+
 // Default color of the nodes 
 var defaultColor = "#F0141E";
 
@@ -132,8 +133,9 @@ function on_load()
 			// Initialise graph
 			initListener();
 
-			// Prune graph - remove edges with weight < 
+			// Prune graph - remove edges with weight <
 			pruneGraph();
+
 
 			// Display graph
 			display();
@@ -739,6 +741,7 @@ function pruneGraph()
 			}
 		}
 	});
+
 
 
 
