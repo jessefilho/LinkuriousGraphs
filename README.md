@@ -53,3 +53,9 @@ Quel peut-être l'intérêt d'une telle fonctionnalité ?
 
 R: Allow a reorganazetion of nodes with a low complex
 Removing an edge takes O(1) time
+
+Question 8. Compléter la fonction JavaScript `getNeighbours()’ utilisé dans ’selectNode()' pour
+afficher des informations sur un nœud dans le panneau `nodeTabContent' de droite. Les informations
+à afficher sont les vignettes des voisins du nœud courant. Un clic sur une de ces vignettes correspond
+à la sélection d'un nouveau nœud d'intérêt, et donc à la mise à jour dans le graphe et dans l'onglet
+`Current node'. 

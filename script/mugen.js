@@ -592,12 +592,32 @@ function deselectNode()
  */
 function getNeighbours(sig, nodeId)
 {
+	//console.log(sig)
+	//console.log("neighborhood",sig.graph.neighborhood)
+	//console.log("neighborhood",sig.graph.neighborhood(nodeId))
+	//console.log(nodeId)
+
+	neighborhood = sig.graph.neighborhood(nodeId)
 	var	neighboursId = [];
 	var	weights = [];
 	var neighbours = [];
 
 	//TODO
+	console.log("neighborhood",neighborhood)
+	neighborhood.nodes.forEach(function(n) {
+		console.log("n",n)
 
+		perso = {
+			"id": n.id,
+			"image":{
+				"url":n.image
+			},
+			"label":n.label
+		}
+		neighbours.push(perso)
+	});
+
+	console.log("return",neighbours)
 	return neighbours;
 }
 
