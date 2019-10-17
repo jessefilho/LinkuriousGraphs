@@ -26,9 +26,10 @@ TP Questions
 
 Question 1. Si on considère un graphe G pour lequel :
 1. les nœuds sont les personnages et les comics
-
 2. les arêtes sont les liens (personnage, comic)
-A quoi ressemble ce graphe ? Dessiner le grossièrement. Comment qualifie-t-on ce type de graphe ?
+
+A quoi ressemble ce graphe ? Dessiner le grossièrement. Comment 
+qualifie-t-on ce type de graphe ?
 Comment transformer G pour créer un graphe type ‘réseau social' à partir de ce jeu de données ?
 Appelons ce nouveau graphe G*, quel poids peut-on associer aux arêtes ?
 
@@ -54,8 +55,8 @@ Quel peut-être l'intérêt d'une telle fonctionnalité ?
 R: Allow a reorganazetion of nodes with a low complex
 Removing an edge takes O(1) time
 
-Question 8. Compléter la fonction JavaScript `getNeighbours()’ utilisé dans ’selectNode()' pour
-afficher des informations sur un nœud dans le panneau `nodeTabContent' de droite. Les informations
+Question 8. Compléter la fonction JavaScript "getNeighbours()" utilisé dans ’selectNode()' pour
+afficher des informations sur un nœud dans le panneau "nodeTabContent" de droite. Les informations
 à afficher sont les vignettes des voisins du nœud courant. Un clic sur une de ces vignettes correspond
 à la sélection d'un nouveau nœud d'intérêt, et donc à la mise à jour dans le graphe et dans l'onglet
 `Current node'.
@@ -65,16 +66,18 @@ garder que les héros qui ont de nombreuses connexions (arcs de poids supérieur
 le pseudocode de l'algorithme qui effectuerait ce premier filtrage des arcs.
 
 ```
-pop_heros = {}
+pop_heros = []
 
 foreach pop_hero in edges:
     if pop_hero.weight >= 50:
-        pop_heros.psuh(pop_hero)
-        
+        popularity = sum of unique weights of pop_hero unique 
+        pop_heros.push({ pop_hero, popularity })
+     
+return sortedDesc(pop_heros)
 ```
 
-Question 10. Pour filtrer le graphe, écrire la fonction JavaScript `pruneGraph()' qui supprime les arêtes
-dont le poids est inferieur a un paramètre global `MIN_EDGE_WEIGHT. Faire appel à cette fonction
+Question 10. Pour filtrer le graphe, écrire la fonction JavaScript pruneGraph()' qui supprime les arêtes
+dont le poids est inferieur a un paramètre global 'MIN_EDGE_WEIGHT. Faire appel à cette fonction
 dans la méthode `on load()' avant l'affichage du graphe.
 Aide : (Suppression d’arc = sig.graph.dropEdge(edge.id);)
 
@@ -121,9 +124,55 @@ qui fait appel à l'algorithme de Louvain, déjà implémenté.
 Aide : https://github.com/Linkurious/linkurious.js/tree/linkurious-version/plugins/sigma.statistics.louvain
 
 ```
-l'algorithme de Louvain reorganise les graphs en basant sur le clustering
-hierarchique, en regroupant les noudes voisins qui sont plus proche et qui
-respecte les parametres de Internal density et External density. Oú Internal density
-est la "distance" inters entre les nouds voisins. Et External density est
-la "distance" entre les groupes ou communautés.
+
+Part 1:
+Les colour des noudes sont attribué en basant sur les classes de chaque noudes qui est 
+generé par l'index calculé methode statistc du louvain.
+
+
+Part 2:
+repartions sont ordenées et mapped dans l'order croissante
+
+donc l'algorithme de Louvain reorganise les graphs en basant sur le clustering
+hierarchique, en regroupant les noudes voisins en communautées. 
+```
+Question 15. Proposer le pseudo-code d’un algorithme et d’une signature de nœuds qui permettrait de
+mesurer une similarité ou dissimilarité entre 2 nœuds dans le graphe. Justifier et expliquer l’intérêt
+d’une telle fonction. 
+```
+for i in range(nodes.length):
+    for j in range(nodes.length):
+        if node[i]._louvain != node[j]._louvain
+            dissimilarité flag = 
+        else 
+            similarité flag
+
+```
+
+Question 16. Proposer le pseudo-code d’un algorithme qui permettrait de mesurer une similarité ou
+dissimilarité entre 2 sous-graphes en renvoyant éventuellement aussi un appariement (matching)
+entre les éléments des 2 sous-graphes. Justifier et expliquer l’intérêt d’une telle fonction. 
+```
+
+
+```
+
+Question 17. Regarder et expliquer la fonction JavaScript `computeDensities()' qui calcule les densités
+intra- et inter-cluster d'un partitionnement donnée. Indiquer les expressions mathématiques des
+différentes valeurs intéressantes calculées par l’algorithmes. Quelles valeurs obtient-on pour le
+partitionnement avec l'algorithme de Louvain ?
+```
+Aprés la repartions de communautées, l'algorithme va mesures les poids  entre 
+noudes de une communautées et entre communautées. Oú le densité intra-cluster c'est le
+nombre de arcs interne à une communautées par quantite de possibles noudes, dont
+de global internal_density sera la moyenne entre les repartions. Et inter-cluster c'est
+la maximum distance entre les communautées.
+
+intra-cluster = ( Sum des |E| / |V| * |V| - 1 ) / nb repartions total
+inter-cluster = |E| - |External E| /  (|V| * |V| - 1) - quantite total de possibles noudes
+
+Nb internal edges = 80  
+Internal density = 0.25774198568316214  
+External density = 0.0016790597265531303
+
 ```

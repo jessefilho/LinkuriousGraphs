@@ -883,7 +883,7 @@ function computeDensities(communityMap, nbPartitions)
 		// Get current community number of nodes
 		var nb_nodes = communityMap[i].length;
 
-		// Compute current coomunity internal edges
+		// Compute current community internal edges
 		var cpt_edges = 0;
 		for (var n1=0; n1<nb_nodes; n1++)
 			for (var n2=n1; n2<nb_nodes; n2++)
