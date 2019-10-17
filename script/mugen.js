@@ -341,6 +341,9 @@ function showHideEdges()
 		displayEdge = false;
 		
 		//TODO
+		sig.graph.edges().forEach(function(e) {
+			e.hidden = true;
+		});
 	}
 	
 	// Refresh the display
