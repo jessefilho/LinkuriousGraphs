@@ -63,3 +63,17 @@ afficher des informations sur un nœud dans le panneau `nodeTabContent' de droit
 Question 9. Nous souhaitons étudier les héros les plus "importants". Pour ce faire, on choisit de ne
 garder que les héros qui ont de nombreuses connexions (arcs de poids supérieur ou égal à 50). Ecrire
 le pseudocode de l'algorithme qui effectuerait ce premier filtrage des arcs.
+
+```
+pop_heros = {}
+
+foreach pop_hero in edges:
+    if pop_hero.weight >= 50:
+        pop_heros.psuh(pop_hero)
+        
+```
+
+Question 10. Pour filtrer le graphe, écrire la fonction JavaScript `pruneGraph()' qui supprime les arêtes
+dont le poids est inferieur a un paramètre global `MIN_EDGE_WEIGHT. Faire appel à cette fonction
+dans la méthode `on load()' avant l'affichage du graphe.
+Aide : (Suppression d’arc = sig.graph.dropEdge(edge.id);)

@@ -610,9 +610,19 @@ function getNeighbours(sig, nodeId)
 	//TODO
 	console.log("neighborhood",neighborhood)
 	neighborhood.nodes.forEach(function(n) {
-
-		neighbours.push(n)
+		if (n.id != nodeId){
+			neighbours.push(n)
+		}
 	});
+
+	console.log("neighborhood",neighborhood)
+	neighborhood.edges.forEach(function(n) {
+		console.log("n",n)
+		// if (n.id != nodeId){
+		// 	neighbours.push(n)
+		// }
+	});
+
 
 	console.log("return",neighbours)
 	return neighbours;
