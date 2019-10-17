@@ -247,8 +247,9 @@ function display()
 		}
 
 		// Squared nodes
+		//n.type = "square"
 		n.type = "square"
-		
+
 		// Save original attributes
 		n.originalColor = (n.color)? n.color : sig.settings('defaultNodeColor');
 		n.originalSize = (n.size)? n.size : sig.settings('minNodeSize');
@@ -290,6 +291,12 @@ function changeNodeStyles()
 		// Change the style of the nodes
 		
 		//TODO
+		sig.graph.nodes().forEach(function(n) {
+
+			n.color = "#000";
+			n.type = "circle";
+		});
+		blackNodes = false;
 	}
 	else
 	{
