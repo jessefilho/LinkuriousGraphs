@@ -40,3 +40,5 @@ Question 3. Dans `help.html', compléter la section `About the students'. Rajout
 noms, prénoms, numéros étudiant.
 
 
+Question 4. Dans index.html, associer comme évènement sur le bouton "fl (img au pdf)" la méthode JavaScript
+`flLayout()' qui est déjà implémentée.

@@ -2,7 +2,8 @@
 // VARIABLES
 /*****************************************************************************************/
 
-var graphURL = "./data/marvel_degree_thresh_200.json";
+//var graphURL = "./data/marvel_degree_thresh_200.json";
+var graphURL = "./data/mu_128.json";
 //var graphURL = "./data/simple_communities.json";
 var imagePath  = "./data/images/";	
 
