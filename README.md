@@ -58,4 +58,8 @@ Question 8. Compléter la fonction JavaScript `getNeighbours()’ utilisé dans 
 afficher des informations sur un nœud dans le panneau `nodeTabContent' de droite. Les informations
 à afficher sont les vignettes des voisins du nœud courant. Un clic sur une de ces vignettes correspond
 à la sélection d'un nouveau nœud d'intérêt, et donc à la mise à jour dans le graphe et dans l'onglet
-`Current node'. 
+`Current node'.
+
+Question 9. Nous souhaitons étudier les héros les plus "importants". Pour ce faire, on choisit de ne
+garder que les héros qui ont de nombreuses connexions (arcs de poids supérieur ou égal à 50). Ecrire
+le pseudocode de l'algorithme qui effectuerait ce premier filtrage des arcs.

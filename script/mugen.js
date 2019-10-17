@@ -551,8 +551,13 @@ function selectNode(nodeId)
 		var newNeighbourImage = (newSelectedNode.image.url)? neighbours[i].image.url : neighbours[i].image;
 
 		var newNeighbour = "<li><a href=\"#\">";
-		newNeighbour += "<img class=\"neighbourImage\" src=\"" + newNeighbourImage + "\" onclick=\"selectNode(&quot;" + neighbours[i].id + "&quot;)\"/>";
-		newNeighbour += "<img class=\"neighbourImageZoom\" src=\"" + newNeighbourImage + "\" title=\"" + neighbours[i].label + "\" onclick=\"selectNode(&quot;" + neighbours[i].id + "&quot;)\"/>";
+		newNeighbour += "<img class=\"neighbourImage\" src=\"" +
+			newNeighbourImage + "\" onclick=\"selectNode(&quot;" +
+			neighbours[i].id + "&quot;)\"/>";
+		newNeighbour += "<img class=\"neighbourImageZoom\" src=\"" +
+			newNeighbourImage + "\" title=\"" +
+			neighbours[i].label + "\" onclick=\"selectNode(&quot;" +
+			neighbours[i].id + "&quot;)\"/>";
 		newNeighbour += "</a></li>";
 		document.getElementById("neighboursList").innerHTML += newNeighbour;
 	}
@@ -605,16 +610,8 @@ function getNeighbours(sig, nodeId)
 	//TODO
 	console.log("neighborhood",neighborhood)
 	neighborhood.nodes.forEach(function(n) {
-		console.log("n",n)
 
-		perso = {
-			"id": n.id,
-			"image":{
-				"url":n.image
-			},
-			"label":n.label
-		}
-		neighbours.push(perso)
+		neighbours.push(n)
 	});
 
 	console.log("return",neighbours)
