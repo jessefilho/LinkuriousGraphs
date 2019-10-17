@@ -138,6 +138,9 @@ function on_load()
 			// Display graph
 			display();
 
+			//Check pop order
+			//hitsAlgorithm();
+
 			// Compute edge weights boxplot
 			edgeWeightsBoxplot();
 
@@ -415,7 +418,7 @@ function maleFemaleHighlight()
 
 	console.log("maleFemaleHighlight")
 	sig.graph.nodes().forEach(function(n) {
-		console.log(n)
+
 		if (n.sex == 'M'){
 			n.color = '#02dbdc';
 		} else if (n.sex == 'F'){
@@ -752,6 +755,33 @@ function pruneGraph()
 function highestDegreeNodes()
 {
 	//TODO
+	// The parameter true indicates that the graph is undirected
+	var stats = sig.graph.HITS(true);
+
+	// Convert to sortable objects
+	var sortable = [];
+	for (var stat in stats)
+		sortable.push([stat, stats[stat]])
+
+	// Sort by autorithy
+	sortable.sort(function(obj1, obj2){
+		return obj1[1].authority < obj2[1].authority;
+	});
+
+	// Reset node colours
+	sig.graph.nodes().forEach(function(node) {
+		node.color = "black";
+	});
+
+	// Colour 10 first "authority" nodes
+	for (var i = 0; i < 10; i++) {
+		sig.graph.nodes(sortable[i][0]).color = "red";
+		nb = i + 1
+		console.log("HITS " + nb + " : " + sig.graph.nodes(sortable[i][0]).label);
+	}
+
+	// Refresh sigma renderers:
+	sig.refresh({skipIndexation: true});
 }
 
 

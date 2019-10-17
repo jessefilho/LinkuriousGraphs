@@ -82,5 +82,36 @@ Question 11. Avec MIN EDGE WEIGHT = 50, lancer l'algorithme de dessin de graphe 
 les éléments en trop".
 
 ```
-Reste trop de nodes, et cela empêche d'avoir une visualisation propre.
+Il a y encore des noudes que, empêche d'avoir une visualisation propre de ces qui sont plus 
+important.
 ```
+
+Question 12. Regarder et expliquer la fonction JavaScript `hitsAlgorithm()' qui fait appel a
+l'algorithme HITS 1, déjà implémente. Qui sont, dans l'ordre, les 5 personnages les plus importants,
+selon le critère HITS ?
+Aide : https://en.wikipedia.org/wiki/HITS_algorithm
+
+```
+HITS 0 : CAPTAIN AMERICA 
+HITS 1 : HAWK  
+HITS 2 : ANT-MAN/DR. HENRY J.  
+HITS 3 : THING/BENJAMIN J. GR  
+HITS 4 : HULK/DR. ROBERT BRUC
+```
+Question 13. En vous basant sur l’algorithme précèdent, compléter la fonction JavaScript
+`highestDegreeNodes()' qui colorie en rouge les personnages qui ont le plus de liens. Le reste des
+nœuds sera colorie en noir. Qui sont, dans l'ordre, les 10 personnages les plus importants, selon le
+critère des degrés élevés ?
+
+```
+HITS 1 : CAPTAIN AMERICA  mugen.js:780:3
+HITS 2 : HAWK  mugen.js:780:3
+HITS 3 : ANT-MAN/DR. HENRY J.  mugen.js:780:3
+HITS 4 : THING/BENJAMIN J. GR  mugen.js:780:3
+HITS 5 : HULK/DR. ROBERT BRUC  mugen.js:780:3
+HITS 6 : QUICKSILVER/PIETRO M  mugen.js:780:3
+HITS 7 : HUMAN TORCH/JOHNNY S  mugen.js:780:3
+HITS 8 : WONDER MAN/SIMON WIL  mugen.js:780:3
+HITS 9 : MR. FANTASTIC/REED R  mugen.js:780:3
+HITS 10 : IRON MAN/TONY STARK
+``'
