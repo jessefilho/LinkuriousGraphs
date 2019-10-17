@@ -34,7 +34,8 @@ var currentTab = "nodeTab";
 // Sigma.js instance
 var sig = null;
 
-
+// GLOBAL PARAMETER
+var MIN_EDGE_WEIGHT = 50;
 
 /*****************************************************************************************/
 // ON LOAD
@@ -608,23 +609,16 @@ function getNeighbours(sig, nodeId)
 	var neighbours = [];
 
 	//TODO
-	console.log("neighborhood",neighborhood)
+	console.log("nodeId",nodeId)
 	neighborhood.nodes.forEach(function(n) {
 		if (n.id != nodeId){
+			neighboursId.push(n.id)
 			neighbours.push(n)
+
 		}
 	});
 
-	console.log("neighborhood",neighborhood)
-	neighborhood.edges.forEach(function(n) {
-		console.log("n",n)
-		// if (n.id != nodeId){
-		// 	neighbours.push(n)
-		// }
-	});
-
-
-	console.log("return",neighbours)
+	//console.log("return",neighbours)
 	return neighbours;
 }
 
@@ -727,6 +721,16 @@ function pruneGraph()
 	console.log("Initial graph number of edges = " + sig.graph.edges().length );
 
 	// TODO
+	//sig.graph.dropEdge(edge.id)
+
+	sig.graph.edges().forEach(function(edge) {
+		//console.log("edge",edge.weight,edge.weight < this.MIN_EDGE_WEIGHT)
+		if(edge.weight < this.MIN_EDGE_WEIGHT){
+			sig.graph.dropEdge(edge.id)
+		}
+	});
+
+
 
 	// Notification
 	console.log("Pruned graph number of nodes = " + sig.graph.nodes().length );
