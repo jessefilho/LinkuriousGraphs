@@ -37,7 +37,9 @@ var sig = null;
 
 // GLOBAL PARAMETER
 var MIN_EDGE_WEIGHT = 50;
-
+var node1 = ''
+var node0 = ''
+var spath = []
 /*****************************************************************************************/
 // ON LOAD
 /*****************************************************************************************/
@@ -973,11 +975,66 @@ function newmanGirvanClustering()
  * ShortestPath
  *
  */
-function shortestPath()
-{
-	console.log("Path");
+function selectTwoShotterPAth() {
 
-	//TODO
+	sig.bind('clickNode', function(e) {
+
+		spath.push(e.data.node.id)
+		node0 = spath[0]
+		node1 = spath[1]
+
+	});
+
+	if(node0 != '' && node1 != ''){
+		console.log('path: from', node0,'to: ',node1)
+		var path = sig.graph.astar(node0, node1, {
+			undirected: true
+		})
+
+		spath = path
+		return path
+	}
+
+
+}
+function shortestPath(){
+	console.log("Path");
+	// console.log(sig);
+	// console.log("node1 ",node0)
+	// console.log("node2 ",node1)
+	// console.log("list ",spath)
+
+
+
+	var shortestPaths = selectTwoShotterPAth();
+	if(shortestPaths == null){
+		alert('Now, Select two nodes, and the click again to shortest Path')
+	}else{
+		console.log(shortestPaths)
+
+		for (i = 0 ; i < shortestPaths.length ; i++)
+		{
+			//console.log(shortestPaths[i])
+			console.log(shortestPaths.length.toString())
+			console.log(shortestPaths[i].id)
+			console.log(shortestPaths[i].label)
+
+			//var newNeighbourImage = (newSelectedNode.image.url)? neighbours[i].image.url : neighbours[i].image;
+
+			var graPath = "<li>"  +
+				" <p> ID: " + shortestPaths[i].id+ ", Name: " + shortestPaths[i].label + "&quot;)\"</p>" +
+				"</a></li>";
+
+			console.log(graPath)
+			document.getElementById("dist").innerHTML = "<h4> Distance: " + shortestPaths.length.toString() +"</h4>";
+			document.getElementById("pathList").innerHTML += graPath;
+		}
+		document.getElementById("pathInfo").hidden = false;
+
+	}
+
+
+
 
 }
 

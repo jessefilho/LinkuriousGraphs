@@ -94,6 +94,10 @@ l'algorithme HITS 1, déjà implémente. Qui sont, dans l'ordre, les 5 personnag
 selon le critère HITS ?
 Aide : https://en.wikipedia.org/wiki/HITS_algorithm
 
+This function will fetch by the authorities nodes checking the hits of each nodes. 
+The objetive is find the most relevant nodes. Then list of autorithies is sorted to give
+the colour to the top select nodes.
+
 ```
 HITS 0 : CAPTAIN AMERICA 
 HITS 1 : HAWK  
