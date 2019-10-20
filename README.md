@@ -143,13 +143,31 @@ hierarchique, en regroupant les noudes voisins en communautées.
 Question 15. Proposer le pseudo-code d’un algorithme et d’une signature de nœuds qui permettrait de
 mesurer une similarité ou dissimilarité entre 2 nœuds dans le graphe. Justifier et expliquer l’intérêt
 d’une telle fonction. 
+
+
+
 ```
-for i in range(nodes.length):
-    for j in range(nodes.length):
-        if node[i]._louvain != node[j]._louvain
-            dissimilarité flag = 
+à un moment donné peut etre exister deux graphes \(G_1(N_a,E_a)\) et \(G_2(N_b,E_b)\) 
+avec éventuellement un nombre différent de nœuds et d'arêtes, et il peuvent avoir des 
+correspondance entre graph, c'est-à-dire, avoir la même quantité de noudes voisins, dont 
+les voisins aussi peuvent avoir les mêmes nombre des proichain voisins et etc. Donc, 
+pour mesure la similarité on peut comparer les ensemble de voisin de chaque G (\(G_1\) et 
+\(G_2\) ), par contre, ça peut deviens coute.
+
+L'intéret en cet type de analysis est que on peut trouve de heros que peut avoir de memes amis
+et aussi enimis, et donc ils peuvent etre uni por sauve la vie humane de Thanos, comme dans 
+le film "Avengers: Endgame".
+
+voisans1 = getNeighbours(sig_GA, nodeId_GA)
+voisans2 = getNeighbours(sig_GB, nodeId_GB)
+
+for i in voisans1.nodes:
+    for j in voisans2.nodes:
+    
+        if i != j
+            dissimilarity_flag = 0
         else 
-            similarité flag
+            similarity_flag = 1
 
 ```
 
@@ -157,7 +175,22 @@ Question 16. Proposer le pseudo-code d’un algorithme qui permettrait de mesure
 dissimilarité entre 2 sous-graphes en renvoyant éventuellement aussi un appariement (matching)
 entre les éléments des 2 sous-graphes. Justifier et expliquer l’intérêt d’une telle fonction. 
 ```
+Là l'ideé est un peu pareil à cela sur la dernier question, mais là on cherche les 
+communauté que se rasenssembles à la fois de concentré de l'analyse sur chaque individuos, 
+maintenant on cherchee le similarité de sub-graph. On peut faire cela aprés le partition hierarchique, 
+et donc, parcourir les enssemble de sub-graph en demandant et comparant les labels.
 
+L'intéret en cet type de analysis est de trouver de mêmes caracteristques entre des communautes.
+
+
+for i in graphA.nodes:
+    for j in graphB.nodes:
+    
+        if node[i]._louvain != node[j]._louvain
+            dissimilarity_flag = 0
+        else 
+            similarity_flag = 1
+        
 
 ```
 
